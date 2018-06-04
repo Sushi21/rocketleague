@@ -109,9 +109,19 @@
                     </div>
                     <% if(success) {%>
 
-                        <p><%=success %></p>
+                        <p>You are allready in</p>
 
                    <% } %>
+                   <div class="col-xl-9 mx-auto">
+                      <h2 class="section-heading mb-4">
+                          <span class="section-heading-upper">Players In</span>
+                        </h2>
+                      <ul>
+                   <% players.forEach(function(player){ %>
+                     <li><%=player%></li>
+                   <%})%>
+                   </ul>
+                   </div>
                   </div>
                 </form>
             </div>

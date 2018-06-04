@@ -22,8 +22,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(favicon(path.join(__dirname, "/favicon.ico")));
 app.set('view engine', 'ejs');
 
+
 app.get("/", function(req, res) {
-  res.render('index');
+  console.log(db.get('players').map('name').value());
+  
+  res.redirect("/index");
+});
+
+app.get("/index", function(req, res){
+  res.render('index', {success: false,players: db.get('players').map('name').value()});
 });
 
 app.post("/", function(req, res) {
@@ -44,7 +51,7 @@ app.post("/", function(req, res) {
     console.error(error);
   }
 
-  res.render('index', {success: success});
+  res.render('index', {success: success,players: db.get('players').map('name').value()});
 });
 
 app.listen(8000, function() {
